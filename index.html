@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>ReactJS入门</title>
+    <script src="build/react.js"></script>
+    <script src="build/JSXTransformer.js"></script>
+    <style type="text/css">
+        #container0{border:5px solid red;margin-top: 10px}
+        #container1{border:5px solid yellow;margin-top: 10px}
+        #container2{border:5px solid black;margin-top: 10px}
+        #container3{border:5px solid green;margin-top: 10px}
+        #container4{border:5px solid blueviolet;margin-top: 10px}
+        #container5{border:5px solid aqua;margin-top: 10px}
+        #container6{border:5px solid darkorange;margin-top: 10px}
+    </style>
+</head>
+<body>
+<div id="container0"></div>
+<div id="container1"></div>
+<div id="container2"></div>
+<div id="container3"></div>
+<div id="container4"></div>
+<div id="container5"></div>
+<div id="container6"></div>
+<script type="text/jsx">
+    //0
+    React.render(
+            <h1>第0段Hello, world!</h1>,
+            document.getElementById('container0')
+    );
+    //1
+    var names = ['zhu', 'yang', 'yang'];
+
+    React.render(
+            <div>
+            {
+          names.map(function (name) {
+              return <div>第一段Hello, {name}!</div>
+          })
+          }
+            </div>,
+            document.getElementById('container1')
+    );
+    //2
+    var arr = [
+        <h1>这是第二段2.1</h1>,
+        <h2>这是第二段2.2</h2>,
+    ];
+    React.render(
+        <div>*{arr}*</div>,
+        document.getElementById('container2')
+    );
+    //3
+    var Greet = React.createClass({
+        render: function () {
+            return <h1>Hello第三段 {this.props.name}</h1>;
+        }
+    });
+
+    React.render(
+        <Greet name="Jack" />,
+        document.getElementById('container3')
+    );
+    //4
+    var InputState = React.createClass({
+        getInitialState: function () {
+            return {enable: false};
+        },
+        handleClick: function (event) {
+            this.setState({enable: !this.state.enable});
+        },
+        render: function () {
+
+            return (
+                    <p>
+                        <label>这是第四段</label>
+                        <input type="text" disabled={this.state.enable} />
+                        <button onClick={this.handleClick}>Change State</button>
+                    </p>
+            );
+        }
+    });
+
+    React.render(
+        <InputState />,
+        document.getElementById('container4')
+    );
+    //5
+    var Hello = React.createClass({
+        getInitialState: function () {
+            return {
+                opacity: 1.0
+            };
+        },
+
+        componentDidMount: function () {
+            this.timer = setInterval(function () {
+                var opacity = this.state.opacity;
+                opacity -= .05;
+                if (opacity < 0.1) {
+                    opacity = 1.0;
+                }
+                this.setState({
+                    opacity: opacity
+                });
+            }.bind(this), 100);
+        },
+
+        render: function () {
+            return (
+                    <div style={{opacity: this.state.opacity}}>
+                    Hello这是第五段 {this.props.name}
+                    </div>
+            );
+        }
+    });
+
+    React.render(
+            <Hello name="world"/>,
+            document.getElementById('container5')
+    );
+    //6
+    var Search = React.createClass({
+        render: function () {
+            return (
+                    <div>
+               {this.props.searchType}:
+                        <input type="text" />
+                        <button>第六段6.1</button>
+                    </div>
+            );
+        }
+    });
+    var Page = React.createClass({
+        render: function () {
+            return (
+                    <div>
+                        <h1>第六段6.2</h1>
+                        <Search searchType="Title" />
+                        <Search  searchType="Content" />
+                    </div>
+            );
+        }
+    });
+    React.render(
+        <Page />,
+        document.getElementById('container6')
+    );
+</script>
+</body>
+</html>
