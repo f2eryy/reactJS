@@ -26,7 +26,7 @@
 <script type="text/jsx">
     //0
     React.render(
-            <h1>第0段Hello, world!</h1>,
+            <h1>第零段Hello, world!</h1>,
             document.getElementById('container0')
     );
     //1
@@ -44,8 +44,8 @@
     );
     //2
     var arr = [
-        <h1>这是第二段2.1</h1>,
-        <h2>这是第二段2.2</h2>,
+        <h1>这是第二段2.1Hello, world!</h1>,
+        <h2>这是第二段2.2Hello, world!</h2>,
     ];
     React.render(
         <div>*{arr}*</div>,
@@ -54,7 +54,7 @@
     //3
     var Greet = React.createClass({
         render: function () {
-            return <h1>Hello第三段 {this.props.name}</h1>;
+            return <h1>第三段Hello, world! {this.props.name}</h1>;
         }
     });
 
@@ -76,7 +76,7 @@
                     <p>
                         <label>这是第四段</label>
                         <input type="text" disabled={this.state.enable} />
-                        <button onClick={this.handleClick}>Change State</button>
+                        <button onClick={this.handleClick}>Hello, world!</button>
                     </p>
             );
         }
@@ -110,7 +110,7 @@
         render: function () {
             return (
                     <div style={{opacity: this.state.opacity}}>
-                    Hello这是第五段 {this.props.name}
+                    这是第五段Hello, world! {this.props.name}
                     </div>
             );
         }
@@ -127,7 +127,7 @@
                     <div>
                {this.props.searchType}:
                         <input type="text" />
-                        <button>第六段6.1</button>
+                        <button>第六段6.1Hello, world!</button>
                     </div>
             );
         }
@@ -136,7 +136,7 @@
         render: function () {
             return (
                     <div>
-                        <h1>第六段6.2</h1>
+                        <h1>第六段6.2Hello, world!</h1>
                         <Search searchType="Title" />
                         <Search  searchType="Content" />
                     </div>
